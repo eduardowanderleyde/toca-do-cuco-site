@@ -232,3 +232,29 @@ p { margin: 0 0 1em; color: var(--texto-suave); text-wrap: pretty; }
   .cine { height: 100svh; }
   .momento:not(:first-of-type), .cine-dica { display: none; }
 }
+
+/* ── Galeria ───────────────────────────────────────────────────────────── */
+.arte--foto { mix-blend-mode: normal; filter: brightness(.78) saturate(1.05); }
+@media (min-width: 861px) { .arte--foto.arte--direita, .arte--foto.arte--esquerda { width: 54vw; } }
+.fotos { width: 100%; max-width: var(--largura); columns: 3; column-gap: 14px; }
+.foto { display: block; break-inside: avoid; margin-bottom: 14px; border-radius: 12px; overflow: hidden; cursor: zoom-in; }
+.foto img { width: 100%; height: auto; transition: transform .8s var(--ease); }
+.foto:hover img { transform: scale(1.04); }
+.foto:focus-visible { outline: 3px solid var(--acento); outline-offset: 3px; }
+@media (max-width: 860px) { .fotos { columns: 2; column-gap: 10px; } .foto { margin-bottom: 10px; } }
+.luz { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgb(4 7 8 / .95); }
+.luz[open] { display: grid; place-items: center; }
+.luz img { max-width: 94vw; max-height: 90dvh; object-fit: contain; border-radius: 8px; }
+.luz-b { position: absolute; width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgb(7 12 13 / .75); color: var(--texto); font-size: 28px; line-height: 1; cursor: pointer; }
+.luz-fechar { top: 16px; right: 16px; }
+.luz-ant { left: 12px; top: calc(50% - 24px); }
+.luz-prox { right: 12px; top: calc(50% - 24px); }
+@media (min-width: 861px) {
+  .arte--foto.arte--direita { -webkit-mask-image: linear-gradient(to left, #000 78%, transparent 100%), linear-gradient(to bottom, transparent, #000 18%, #000 80%, transparent); mask-image: linear-gradient(to left, #000 78%, transparent 100%), linear-gradient(to bottom, transparent, #000 18%, #000 80%, transparent); }
+  .arte--foto.arte--esquerda { -webkit-mask-image: linear-gradient(to right, #000 78%, transparent 100%), linear-gradient(to bottom, transparent, #000 18%, #000 80%, transparent); mask-image: linear-gradient(to right, #000 78%, transparent 100%), linear-gradient(to bottom, transparent, #000 18%, #000 80%, transparent); }
+}
+/* No celular a foto fica acima do painel, não atrás dele */
+@media (max-width: 860px) {
+  #sobre, #presskit { padding-top: min(86vw, 520px); }
+  .arte--foto.arte--direita, .arte--foto.arte--esquerda { top: 0; bottom: auto; height: min(94vw, 560px); opacity: 1; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 82%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 82%, transparent); }
+}

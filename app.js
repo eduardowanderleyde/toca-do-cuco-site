@@ -183,3 +183,26 @@
     });
   }
 })();
+
+/* ── Galeria em tela cheia ────────────────────────────────────────────── */
+(() => {
+  const luz = document.querySelector(".luz");
+  const fotos = [...document.querySelectorAll(".foto")];
+  if (!luz || !fotos.length || !luz.showModal) return;
+  const img = luz.querySelector("img");
+  let n = 0;
+  const ver = (i) => {
+    n = (i + fotos.length) % fotos.length;
+    img.src = fotos[n].href;
+    img.alt = fotos[n].querySelector("img").alt;
+  };
+  fotos.forEach((f, i) => f.addEventListener("click", (e) => { e.preventDefault(); ver(i); luz.showModal(); }));
+  luz.querySelector(".luz-ant").onclick = () => ver(n - 1);
+  luz.querySelector(".luz-prox").onclick = () => ver(n + 1);
+  luz.querySelector(".luz-fechar").onclick = () => luz.close();
+  luz.addEventListener("click", (e) => { if (e.target === luz) luz.close(); });
+  luz.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") ver(n - 1);
+    if (e.key === "ArrowRight") ver(n + 1);
+  });
+})();
