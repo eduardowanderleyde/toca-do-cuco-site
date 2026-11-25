@@ -2,7 +2,7 @@ window.SITE = {
   nome: "Toca do Cuco",
 
   whatsapp: {
-    numero: "558196640023", // substituir pelo número real com DDI
+    numero: "5581996640023",
     mensagem: "Oi! Quero consultar a disponibilidade da Toca do Cuco para um evento.",
   },
 
